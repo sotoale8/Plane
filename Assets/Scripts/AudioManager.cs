@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
-{
+{   //TODO Aplicar el singleton para el manejo de los audios
     public static AudioManager Instance {get; private set;}
     [SerializeField] AudioSource sfxAudio, musicAudio;
     public AudioClip initialMusic;
