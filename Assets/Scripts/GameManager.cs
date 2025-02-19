@@ -5,7 +5,10 @@ using System;
 
 public class GameManager : MonoBehaviour
 {
-
+    [SerializeField] GameObject menuPanel;
+    [SerializeField] GameObject pausePanel;
+    [SerializeField] bool isPaused;
+    private bool gameStarted=false; 
     public int playerPoints = 0;
     public int pointsToWin=1;   
 
@@ -26,16 +29,22 @@ public class GameManager : MonoBehaviour
             {
                 Destroy(this.gameObject);
             }
+
+        Time.timeScale = 0;
     }
 
     void Start()
     {
         CountEnemies();
+
     }
 
     void Update()
     {
-
+        if(Input.GetKeyDown(KeyCode.P))
+        {
+            PauseGame();
+        }
     }
 
     public void AddPlayerPoint()
@@ -52,6 +61,25 @@ public class GameManager : MonoBehaviour
     {
         enemiesLeft =playerPoints;
         enemiesText.text=enemiesLeft +"/6";
+
+    }
+
+    public void PauseGame()
+    {
+        if(!gameStarted) return;
+        
+        isPaused=!isPaused;
+        Time.timeScale = isPaused ? 0 : 1;
+        pausePanel.SetActive(isPaused);
+
+        
+    }
+
+    public void StartGame()
+    {
+        menuPanel.SetActive(false);
+        Time.timeScale = 1;
+        gameStarted= true;
 
     }
 
