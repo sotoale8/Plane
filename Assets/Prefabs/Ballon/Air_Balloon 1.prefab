@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 3444105154266489316}
   m_Layer: 0
   m_Name: Air_Balloon 1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
