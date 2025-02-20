@@ -13,6 +13,7 @@ public class MissileShoot : MonoBehaviour
 
     void Start()
     {
+        
         planeVelocity = planeRB.linearVelocity;
        
     }
@@ -21,7 +22,7 @@ public class MissileShoot : MonoBehaviour
     void Update()
     {   
         contS += Time.deltaTime; 
-        if (Input.GetKeyDown(KeyCode.Space) && contS > fireRate)
+        if (Input.GetKeyDown(KeyCode.B) && contS > fireRate)
         {
            Rigidbody newMissile = Instantiate(missilePrefab,transform.position,transform.rotation);
            newMissile.linearVelocity=planeVelocity;

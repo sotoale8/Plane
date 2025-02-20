@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 public class AudioManager : MonoBehaviour
-{   //TODO Aplicar el singleton para el manejo de los audios
+{   
     public static AudioManager Instance {get; private set;}
     [SerializeField] AudioSource sfxAudio, musicAudio;
     public AudioClip initialMusic;
-
+    public bool isMuted=false;
     private void Awake() {
         if(Instance == null)
         {
@@ -43,5 +43,28 @@ public class AudioManager : MonoBehaviour
         musicAudio.clip = clip;
         musicAudio.Play();
         musicAudio.loop = true;
+    }
+
+    public void Mute()
+    {   
+        isMuted =!isMuted;
+        musicAudio.mute=isMuted;
+    }
+
+    public void PauseMusic(bool isPaused)
+    {
+        print("entra");
+        switch (isPaused)
+            { 
+                case true:
+                musicAudio.Pause();    
+                break;
+              case false:
+                musicAudio.Play();
+                break;
+        
+            }
+    
+
     }
 }

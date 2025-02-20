@@ -71,7 +71,8 @@ public class GameManager : MonoBehaviour
         isPaused=!isPaused;
         Time.timeScale = isPaused ? 0 : 1;
         pausePanel.SetActive(isPaused);
-
+        AudioManager.Instance.PauseMusic(isPaused);
+      
         
     }
 
