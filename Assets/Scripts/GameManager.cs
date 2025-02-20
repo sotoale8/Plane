@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject menuPanel;
     [SerializeField] GameObject pausePanel;
+    [SerializeField] GameObject optionsPanel;
     [SerializeField] bool isPaused;
     private bool gameStarted=false; 
     public int playerPoints = 0;
@@ -71,9 +72,8 @@ public class GameManager : MonoBehaviour
         isPaused=!isPaused;
         Time.timeScale = isPaused ? 0 : 1;
         pausePanel.SetActive(isPaused);
-        AudioManager.Instance.PauseMusic(isPaused);
+        AudioManager.Instance.PauseMusic(isPaused);     
       
-        
     }
 
     public void StartGame()
@@ -83,5 +83,18 @@ public class GameManager : MonoBehaviour
         gameStarted= true;
 
     }
+
+    public void OptionsMenu()
+    {
+        optionsPanel.SetActive(true);
+
+    }
+
+      public void BackMenu()
+    {
+        optionsPanel.SetActive(false);
+
+    }
+
 
 }
