@@ -5,15 +5,15 @@ public class PlayerInteractions : MonoBehaviour
     public GameObject powerUp;
     public bool powerUpCollected;
 
+    private bool alreadyEnable=false;
+
         
         void Update()
     {
-        if (GameManager.Instance.playerPoints==6)
-        {
-            powerUp.SetActive(true);
-            
-        }
-
+       if(GameManager.Instance.playerPoints==1 && !alreadyEnable)
+       {
+         EnablePowerup();
+       }
     }
 
     void OnTriggerEnter(Collider other)
@@ -21,9 +21,15 @@ public class PlayerInteractions : MonoBehaviour
         if(other.CompareTag("Powerup"))
         {
             powerUpCollected=true;
-            print("Colectado");
 
         }
+    }
+    public void EnablePowerup()
+    {
+
+          powerUp.SetActive(true);
+          alreadyEnable=true;
+
     }
 
 }

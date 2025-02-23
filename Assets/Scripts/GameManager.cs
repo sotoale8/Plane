@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI enemiesText;
     public int enemiesLeft;
+    [SerializeField] bool isPlayerWins=false;
 
     public static GameManager Instance {get; private set;}
 
@@ -52,17 +53,18 @@ public class GameManager : MonoBehaviour
     public void AddPlayerPoint()
     {
         playerPoints++;
-        if (playerPoints==pointsToWin)
+        if (isPlayerWins)
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().name);
                 playerPoints=0;
+                isPlayerWins=false;
             }
     }
 
     public void CountEnemies()
     {
-        enemiesLeft =playerPoints;
-        enemiesText.text=enemiesLeft +"/6";
+        enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy").Length;
+        enemiesText.text=playerPoints+ "/6";
 
     }
 
@@ -79,6 +81,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        
         menuPanel.SetActive(false);
         Time.timeScale = 1;
         gameStarted= true;
@@ -103,6 +106,8 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameStarted=false;
 
-    }
+    }   
+
+  
 
 }
