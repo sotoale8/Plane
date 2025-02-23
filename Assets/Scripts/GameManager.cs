@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject pausePanel;
     [SerializeField] GameObject optionsPanel;
     [SerializeField] bool isPaused;
-    private bool gameStarted=false; 
+    public bool gameStarted=false; 
     public int playerPoints = 0;
     public int pointsToWin=1;   
 
@@ -31,7 +31,8 @@ public class GameManager : MonoBehaviour
                 Destroy(this.gameObject);
             }
 
-        Time.timeScale = 0;
+        Time.timeScale = 0; 
+     
     }
 
     void Start()
@@ -95,6 +96,13 @@ public class GameManager : MonoBehaviour
         optionsPanel.SetActive(false);
 
     }
+    
+        public void EndGame()
+    {   
 
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameStarted=false;
+
+    }
 
 }

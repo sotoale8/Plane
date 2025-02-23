@@ -250,6 +250,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d097760e3d364646931c2b0f2c03a00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifeBallon: 10
+  bulletDamage: 0.5
   positionMax: 75
   positionMin: 70
   velMovement: 0

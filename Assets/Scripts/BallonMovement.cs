@@ -2,10 +2,12 @@ using UnityEngine;
 
 
 public class BallonMovement : MonoBehaviour
-{
+{       
+       [SerializeField] float lifeBallon;
+       [SerializeField] float bulletDamage;
        public float positionMax; 
        public float positionMin; 
-         private bool isUp= true;
+       private bool isUp= true;
 
        public float velMovement;
 
@@ -40,8 +42,13 @@ public class BallonMovement : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other)
-    {
-        if(other.CompareTag("Missile"))
+    {   
+        if (other.CompareTag("Bullet"))
+        {
+            lifeBallon-= bulletDamage;
+        }
+
+        if( lifeBallon<0)
         {   
             audioSource.PlayOneShot(soundClip);
             
@@ -66,7 +73,6 @@ public class BallonMovement : MonoBehaviour
             GameManager.Instance.AddPlayerPoint();
             GameManager.Instance.CountEnemies();
             explosionEffect.Play();
-            Destroy(other.gameObject);
             Destroy(gameObject,3f);
           
         }

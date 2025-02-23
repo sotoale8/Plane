@@ -10,19 +10,21 @@ public class MissileShoot : MonoBehaviour
     public float fireRate;
     public float contS;
 
+    public PlayerInteractions playerInteractions;
+
 
     void Start()
     {
         
         planeVelocity = planeRB.linearVelocity;
-       
+        playerInteractions = FindAnyObjectByType<PlayerInteractions>();   
     }
 
     // Update is called once per frame
     void Update()
     {   
         contS += Time.deltaTime; 
-        if (Input.GetKeyDown(KeyCode.B) && contS > fireRate)
+        if ( playerInteractions.powerUpCollected && Input.GetKeyDown(KeyCode.B) && contS > fireRate)
         {
            Rigidbody newMissile = Instantiate(missilePrefab,transform.position,transform.rotation);
            newMissile.linearVelocity=planeVelocity;
