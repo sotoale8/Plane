@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MissileBehaviour : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class MissileBehaviour : MonoBehaviour
     ParticleSystem smokePrefab;
     public Transform spawnSmoke;
     
+    public Transform positionTank;
 
     void Start()
     {   
@@ -19,6 +21,7 @@ public class MissileBehaviour : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         audioSource.PlayOneShot(audioClip);
         smokePrefab.Play();
+        transform.LookAt(positionTank);
         
 
     }

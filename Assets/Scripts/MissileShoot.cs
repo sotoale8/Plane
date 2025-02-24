@@ -1,5 +1,6 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class MissileShoot : MonoBehaviour
 {
@@ -13,6 +14,9 @@ public class MissileShoot : MonoBehaviour
     public PlayerInteractions playerInteractions;
 
 
+    public bool tankAdquired;
+    public Transform positionTank;
+
     void Start()
     {
         
@@ -24,7 +28,7 @@ public class MissileShoot : MonoBehaviour
     void Update()
     {   
         contS += Time.deltaTime; 
-        if ( playerInteractions.powerUpCollected && Input.GetKeyDown(KeyCode.B) && contS > fireRate)
+        if ( tankAdquired && playerInteractions.powerUpCollected && Input.GetKeyDown(KeyCode.B) && contS > fireRate)
         {
            Rigidbody newMissile = Instantiate(missilePrefab,transform.position,transform.rotation);
            newMissile.linearVelocity=planeVelocity;

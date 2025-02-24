@@ -321,6 +321,7 @@ MonoBehaviour:
   pointsToWin: 6
   enemiesText: {fileID: 1968573752}
   enemiesLeft: 0
+  isPlayerWins: 0
 --- !u!4 &51055102
 Transform:
   m_ObjectHideFlags: 0
@@ -7540,13 +7541,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931853114}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.43374747, y: 0.826939, z: -0.31752893, w: -0.1649559}
+  m_LocalRotation: {x: 0.051098004, y: 0.5277634, z: -0.5089932, w: -0.67807126}
   m_LocalPosition: {x: 0.05001256, y: 0.273, z: -0.08710307}
   m_LocalScale: {x: 0.116622135, y: 0.10613007, z: 0.107308164}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1479656960}
-  m_LocalEulerAnglesHint: {x: -19.984, y: -22.496, z: 8.056}
+  m_LocalEulerAnglesHint: {x: 27.902, y: -60.311, z: 57.362}
 --- !u!114 &931853116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7649,6 +7650,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rangeFollow: 170
   distanceMagnitud: 0
+  powerUp: {fileID: 6181809399818498225}
+  pos: {fileID: 1821223292}
 --- !u!4 &933558631 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 515175755739938700, guid: 46f9eda5f45584fb3ad05abcd7af6df2, type: 3}
@@ -12334,6 +12337,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Air_Balloon (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 4975715226169051401, guid: 63f436dde903f43a4b4965768656252d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7351979816066682533, guid: 63f436dde903f43a4b4965768656252d, type: 3}
       propertyPath: velMovement
       value: 7
@@ -14343,6 +14350,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 515175755739938700, guid: 46f9eda5f45584fb3ad05abcd7af6df2, type: 3}
   m_PrefabInstance: {fileID: 2064215781}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1821223292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1821223293}
+  m_Layer: 0
+  m_Name: positionProbe
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1821223293
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1821223292}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 0.91, y: 11.1, z: 9.278631}
+  m_LocalScale: {x: 6.1219683, y: 6.12197, z: 6.12197}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1831556872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1884074337756752353, guid: cb04eea70ee14ab49b68d12e2cbbf680, type: 3}
@@ -20852,4 +20890,5 @@ SceneRoots:
   - {fileID: 1995335554}
   - {fileID: 2044815434}
   - {fileID: 1131215625}
+  - {fileID: 1821223293}
   - {fileID: 3172097166314126901}

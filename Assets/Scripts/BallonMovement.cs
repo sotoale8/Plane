@@ -71,7 +71,6 @@ public class BallonMovement : MonoBehaviour
                 }    
                 
             GameManager.Instance.AddPlayerPoint();
-            GameManager.Instance.CountEnemies();
             explosionEffect.Play();
             Destroy(gameObject,3f);
           
