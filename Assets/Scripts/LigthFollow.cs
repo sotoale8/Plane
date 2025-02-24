@@ -5,11 +5,12 @@ public class LigthFollow : MonoBehaviour
     GameObject player;
     public float rangeFollow;
     public float distanceMagnitud;
+    
 
     public GameObject powerUp;
-   
-
-      private Light lightFollow;
+    public GameObject pos;
+ 
+    private Light lightFollow;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
         void Start()
         {
@@ -24,8 +25,9 @@ public class LigthFollow : MonoBehaviour
         Vector3 distance = player.transform.position - transform.position;
             if (powerUp.activeSelf)
             {
-                transform.LookAt(powerUp.transform);
-                print("ligth powerup");
+               lightFollow.enabled=true;
+               transform.LookAt(pos.transform);
+               print("apunta al power up");
             }
 
             else if (rangeFollow> distance.magnitude)
