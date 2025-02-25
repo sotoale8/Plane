@@ -18,6 +18,13 @@ public class PlayerInteractions : MonoBehaviour
        {
          EnablePowerup();
        }
+
+       if (GameManager.Instance.tankEnemiesLeft==0)
+       {
+            slider.SetActive(false);
+
+
+       }
     }
 
     void OnTriggerEnter(Collider other)

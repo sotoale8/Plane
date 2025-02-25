@@ -29,6 +29,7 @@ public class TankBehavior : MonoBehaviour
             }
             GameManager.Instance.CountEnemies();
             Destroy(this.gameObject,3f);
+            GameManager.Instance.AddPlayerPoint();
         }
     }
 

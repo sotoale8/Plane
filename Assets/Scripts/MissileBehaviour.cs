@@ -42,8 +42,8 @@ public class MissileBehaviour : MonoBehaviour
     {   
         if(other.CompareTag("Tank")) 
         {
-        smokePrefab.Stop();
-        gameObject.GetComponent<MeshRenderer>().enabled=false;
+       AudioManager.Instance.StopSFX();
+        Destroy(gameObject);
 
         }
     }

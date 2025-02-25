@@ -1,6 +1,5 @@
 using System.Collections;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,6 +28,12 @@ public class MissileShoot : MonoBehaviour
 
     public Light lightShoot;
 
+    public float contColor;
+
+    public AudioClip audioLocked;
+
+    private Coroutine ctine;
+
     void Start()
     {
         
@@ -50,7 +55,7 @@ public class MissileShoot : MonoBehaviour
                           
         }
 
-        if (Physics.SphereCast(transform.position+Vector3.up*2f , 2f, transform.forward, out RaycastHit hit, 500,layerMask))
+        if (playerInteractions.powerUpCollected && Physics.SphereCast(transform.position+Vector3.up*2f , 2f, transform.forward, out RaycastHit hit, 500,layerMask))
         {
            
                 lightShoot.enabled=true;
@@ -58,6 +63,8 @@ public class MissileShoot : MonoBehaviour
                 timerLock+=Time.deltaTime;
                 slider.value=timerLock;
                 tankAdquired = timerLock >= 0.5;
+                contColor+=Time.deltaTime;
+               
                 
         
 
@@ -69,31 +76,20 @@ public class MissileShoot : MonoBehaviour
                 timerLock=0f;
                 slider.value=0f;
                 tankLockedText.color= Color.white;
+                contColor=0f;
+            
             }
 
-       if(tankAdquired)
+       if(tankAdquired && contColor>0.15)
             {  
-             coroutine= StartCoroutine(ChangeColorText());
-            } else
-            {
-                StopCoroutine(ChangeColorText());
+           
+             tankLockedText.color= (tankLockedText.color==Color.white) ? Color.red : Color.white;
+             contColor=0f;
+             AudioManager.Instance.PlaySFX(audioLocked);
             }
-        
-         Debug.DrawRay(transform.position+Vector3.up*3f, transform.forward * 500f, Color.green);
       
 
     }
 
-
-    IEnumerator ChangeColorText()
-    {   
-        if (coroutine != null)
-        {
-            yield break;
-        }
-        yield return new WaitForSeconds(1f);
-        tankLockedText.color= (tankLockedText.color==Color.white) ? Color.red : Color.white;
-
-    }
-
+  
 }
