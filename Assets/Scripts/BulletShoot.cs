@@ -4,6 +4,8 @@ public class BulletShoot : MonoBehaviour
 {   
     private float cont;
     public float fireRate;
+
+    public AudioClip clip;
     void Start()
     {
         
@@ -20,6 +22,15 @@ public class BulletShoot : MonoBehaviour
            bullet.transform.SetPositionAndRotation(transform.position, transform.rotation);
            bullet.SetActive(true);
            cont=0f;
+                  
+          
+            AudioManager.Instance.PlaySFX(clip);
+          
+          
         }
+      
+           
+           
+       
     }
 }

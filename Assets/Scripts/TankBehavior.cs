@@ -22,11 +22,12 @@ public class TankBehavior : MonoBehaviour
         {   
             explosionEffect.Play();
             gameObject.GetComponent<MeshRenderer>().enabled=false;
+            gameObject.GetComponent<Collider>().enabled=false;
             foreach (MeshRenderer renderer in gameObject.GetComponentsInChildren<MeshRenderer>())
             {
                 renderer.enabled=false;
             }
-            ;
+            GameManager.Instance.CountEnemies();
             Destroy(this.gameObject,3f);
         }
     }

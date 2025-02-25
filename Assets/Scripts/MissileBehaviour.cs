@@ -14,14 +14,19 @@ public class MissileBehaviour : MonoBehaviour
     
     public Transform positionTank;
 
+    
+    
+
     void Start()
     {   
+       
         smokePrefab = GetComponentInChildren<ParticleSystem>();
         rbMissile= GetComponent<Rigidbody>();
         audioSource = GetComponent<AudioSource>();
-        audioSource.PlayOneShot(audioClip);
+        AudioManager.Instance.PlaySFX(audioClip);
         smokePrefab.Play();
-        transform.LookAt(positionTank);
+        positionTank = MissileShoot.positionTank;
+        transform.LookAt(positionTank.position+Vector3.up*7f);
         
 
     }
@@ -32,4 +37,15 @@ public class MissileBehaviour : MonoBehaviour
         Destroy(this.gameObject,5f);
 
     }
+
+    void OnTriggerEnter(Collider other)
+    {   
+        if(other.CompareTag("Tank")) 
+        {
+        smokePrefab.Stop();
+        gameObject.GetComponent<MeshRenderer>().enabled=false;
+
+        }
+    }
+
 }

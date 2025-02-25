@@ -48,9 +48,10 @@ public class BallonMovement : MonoBehaviour
             lifeBallon-= bulletDamage;
         }
 
-        if( lifeBallon<0)
+        if(lifeBallon<=0)
         {   
-            audioSource.PlayOneShot(soundClip);
+            
+            AudioManager.Instance.PlaySFX(soundClip);
             
             foreach (MeshRenderer meshRenderer in gameObject.GetComponentsInChildren<MeshRenderer>())
                 {  
@@ -71,6 +72,8 @@ public class BallonMovement : MonoBehaviour
                 }    
                 
             GameManager.Instance.AddPlayerPoint();
+            GameManager.Instance.CountEnemies();
+            
             explosionEffect.Play();
             Destroy(gameObject,3f);
           

@@ -1,19 +1,23 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Audio;
+
 
 public class AudioManager : MonoBehaviour
 {   
     public static AudioManager Instance {get; private set;}
     [SerializeField] AudioSource sfxAudio, musicAudio;
+     [SerializeField] AudioMixer master;
     public AudioClip initialMusic;
     public bool isMuted=false;
+
+    public Slider musicSlider,sfxSlider;
+
     private void Awake() {
         if(Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(this.gameObject);
+            
         }
         else
         {
@@ -27,9 +31,20 @@ public class AudioManager : MonoBehaviour
         InitialPlayMusic(initialMusic);
     }
 
+   
+
     public void PlaySFX(AudioClip clip)
     {
         sfxAudio.PlayOneShot(clip);
+    }
+    public void StopSFX()
+    {
+        sfxAudio.Stop();
+    }
+
+    public bool IsPlayingSFX()
+    {
+        return sfxAudio.isPlaying;
     }
     public void PlayMusic(AudioClip clip)
     {
@@ -47,13 +62,14 @@ public class AudioManager : MonoBehaviour
 
     public void Mute()
     {   
-        isMuted =!isMuted;
         musicAudio.mute=isMuted;
+        sfxAudio.mute=isMuted;
+        isMuted =!isMuted;
     }
 
     public void PauseMusic(bool isPaused)
     {
-        print("entra");
+        
         switch (isPaused)
             { 
                 case true:
@@ -67,4 +83,17 @@ public class AudioManager : MonoBehaviour
     
 
     }
+
+      
+    public void MusicVolumeControl()
+    {
+        
+        master.SetFloat("Music", Mathf.Log10(musicSlider.value)*20);
+    }
+
+    public void SFXVolumeControl()
+    {
+        master.SetFloat("Sfx", Mathf.Log10(sfxSlider.value)*20);
+    }
+    
 }

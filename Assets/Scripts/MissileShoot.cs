@@ -1,6 +1,8 @@
+using System.Collections;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class MissileShoot : MonoBehaviour
 {
@@ -11,17 +13,29 @@ public class MissileShoot : MonoBehaviour
     public float fireRate;
     public float contS;
 
+    public float timerLock;
+    public LayerMask layerMask;
+
     public PlayerInteractions playerInteractions;
 
+    public Slider slider;
+
+    private Coroutine coroutine;
 
     public bool tankAdquired;
-    public Transform positionTank;
+    public static Transform positionTank;
+
+    public TextMeshProUGUI tankLockedText;
+
+    public Light lightShoot;
 
     void Start()
     {
         
         planeVelocity = planeRB.linearVelocity;
         playerInteractions = FindAnyObjectByType<PlayerInteractions>();   
+        lightShoot= GetComponentInChildren<Light>();
+      
     }
 
     // Update is called once per frame
@@ -35,5 +49,51 @@ public class MissileShoot : MonoBehaviour
            contS=0f;
                           
         }
+
+        if (Physics.SphereCast(transform.position+Vector3.up*2f , 2f, transform.forward, out RaycastHit hit, 500,layerMask))
+        {
+           
+                lightShoot.enabled=true;
+                positionTank = hit.collider.transform;
+                timerLock+=Time.deltaTime;
+                slider.value=timerLock;
+                tankAdquired = timerLock >= 0.5;
+                
+        
+
+        }
+            else
+            {   
+                lightShoot.enabled=false;
+                tankAdquired=false;
+                timerLock=0f;
+                slider.value=0f;
+                tankLockedText.color= Color.white;
+            }
+
+       if(tankAdquired)
+            {  
+             coroutine= StartCoroutine(ChangeColorText());
+            } else
+            {
+                StopCoroutine(ChangeColorText());
+            }
+        
+         Debug.DrawRay(transform.position+Vector3.up*3f, transform.forward * 500f, Color.green);
+      
+
     }
+
+
+    IEnumerator ChangeColorText()
+    {   
+        if (coroutine != null)
+        {
+            yield break;
+        }
+        yield return new WaitForSeconds(1f);
+        tankLockedText.color= (tankLockedText.color==Color.white) ? Color.red : Color.white;
+
+    }
+
 }

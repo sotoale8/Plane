@@ -27,7 +27,6 @@ public class LigthFollow : MonoBehaviour
             {
                lightFollow.enabled=true;
                transform.LookAt(pos.transform);
-               print("apunta al power up");
             }
 
             else if (rangeFollow> distance.magnitude)

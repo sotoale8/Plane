@@ -5,12 +5,16 @@ public class PlayerInteractions : MonoBehaviour
     public GameObject powerUp;
     public bool powerUpCollected;
 
+    public GameObject slider;
     private bool alreadyEnable=false;
 
-        
-        void Update()
+    void Start()
     {
-       if(GameManager.Instance.playerPoints==1 && !alreadyEnable)
+       
+    }
+    void Update()
+    {
+       if(GameManager.Instance.playerPoints==6 && !alreadyEnable)
        {
          EnablePowerup();
        }
@@ -21,6 +25,7 @@ public class PlayerInteractions : MonoBehaviour
         if(other.CompareTag("Powerup"))
         {
             powerUpCollected=true;
+            slider.SetActive(true);
 
         }
     }
@@ -28,7 +33,7 @@ public class PlayerInteractions : MonoBehaviour
     {
 
           powerUp.SetActive(true);
-          alreadyEnable=true;
+          alreadyEnable=true;     
 
     }
 

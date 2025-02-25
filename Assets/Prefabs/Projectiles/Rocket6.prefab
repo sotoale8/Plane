@@ -164,8 +164,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClip: {fileID: 8300000, guid: 056180308be7446718b96d31a2b8e760, type: 3}
   speedMissile: 400
-  smokePrefab: {fileID: 2984474055646951968}
   spawnSmoke: {fileID: 4262129030096105913}
+  positionTank: {fileID: 0}
 --- !u!136 &5225484140056191804
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -395,11 +395,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 82ab6062b52804f6b87d5c0c3f15e9b9, type: 3}
---- !u!198 &2984474055646951968 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7816513201909246693, guid: 82ab6062b52804f6b87d5c0c3f15e9b9, type: 3}
-  m_PrefabInstance: {fileID: 4977372593759129797}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6432988307232179495 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2041747774518056418, guid: 82ab6062b52804f6b87d5c0c3f15e9b9, type: 3}

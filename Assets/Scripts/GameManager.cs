@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public int playerPoints = 0;
     public int pointsToWin=1;   
 
+    public TextMeshProUGUI tankEnemiesText;
+     public int tankEnemiesLeft;
     public TextMeshProUGUI enemiesText;
     public int enemiesLeft;
     [SerializeField] bool isPlayerWins=false;
@@ -24,8 +26,7 @@ public class GameManager : MonoBehaviour
         if (Instance== null)
             {
                 Instance=this;
-                DontDestroyOnLoad(this.gameObject);
-
+             
             }
         else
             {
@@ -33,6 +34,8 @@ public class GameManager : MonoBehaviour
             }
 
         Time.timeScale = 0; 
+
+        menuPanel= GameObject.Find("Menu");
      
     }
 
@@ -48,6 +51,11 @@ public class GameManager : MonoBehaviour
         {
             PauseGame();
         }
+
+        if (enemiesLeft+tankEnemiesLeft+playerPoints!=13)
+            {
+             CountEnemies();
+            }
     }
 
     public void AddPlayerPoint()
@@ -62,9 +70,13 @@ public class GameManager : MonoBehaviour
     }
 
     public void CountEnemies()
-    {
+    {   
+        
         enemiesLeft = GameObject.FindGameObjectsWithTag("Enemy").Length;
-        enemiesText.text=playerPoints+ "/6";
+        enemiesText.text=enemiesLeft.ToString();
+
+        tankEnemiesLeft= GameObject.FindGameObjectsWithTag("Tank").Length;
+        tankEnemiesText.text = tankEnemiesLeft.ToString();
 
     }
 
