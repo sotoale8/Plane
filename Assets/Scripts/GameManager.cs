@@ -61,12 +61,6 @@ public class GameManager : MonoBehaviour
     public void AddPlayerPoint()
     {
         playerPoints++;
-        if (isPlayerWins)
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-                playerPoints=0;
-                isPlayerWins=false;
-            }
     }
 
     public void CountEnemies()
@@ -78,6 +72,14 @@ public class GameManager : MonoBehaviour
         tankEnemiesLeft= GameObject.FindGameObjectsWithTag("Tank").Length;
         tankEnemiesText.text = tankEnemiesLeft.ToString();
 
+        isPlayerWins= tankEnemiesLeft + enemiesLeft == 0;      
+
+        if (isPlayerWins)
+            {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+                playerPoints=0;
+                isPlayerWins=false;
+            }
     }
 
     public void PauseGame()
