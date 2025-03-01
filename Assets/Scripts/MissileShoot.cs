@@ -32,8 +32,6 @@ public class MissileShoot : MonoBehaviour
 
     public AudioClip audioLocked;
 
-    private Coroutine ctine;
-
     void Start()
     {
         

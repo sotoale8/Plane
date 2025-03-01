@@ -6,6 +6,7 @@ public class PlayerInteractions : MonoBehaviour
     public bool powerUpCollected;
 
     public GameObject slider;
+   
     private bool alreadyEnable=false;
 
     void Start()
@@ -14,17 +15,11 @@ public class PlayerInteractions : MonoBehaviour
     }
     void Update()
     {
-       if(GameManager.Instance.playerPoints==6 && !alreadyEnable)
+       if(GameManager.Instance.enemiesLeft==0 && !alreadyEnable)
        {
          EnablePowerup();
        }
-
-       if (GameManager.Instance.tankEnemiesLeft==0)
-       {
-            slider.SetActive(false);
-
-
-       }
+     
     }
 
     void OnTriggerEnter(Collider other)

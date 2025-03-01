@@ -25,12 +25,16 @@ public class PlayerControllerRigidbody : MonoBehaviour
     public bool isZLevelOk; 
     public float zLevel; 
     public bool isLanding=false; 
+    public  bool landed=false; 
+    public float timeLanding=0; 
 
     public Transform groundCheck;
     private Vector3 groundCheckSize= new(1f,1f,1f);
     public LayerMask roadMask;
 
     public bool isGround;
+
+    public GameObject finalPos;
     
     void Start()
     {
@@ -46,19 +50,24 @@ public class PlayerControllerRigidbody : MonoBehaviour
         CheckOrientation();
         CheckLanding();
         isGround = Physics.CheckBox(groundCheck.position,groundCheckSize,groundCheck.rotation,roadMask);
-      
+        if(landed)
+        {
+           finalPos.SetActive(true);
+
+        }
 
     }
 
     private void CheckLanding()
     {
-        if (isZLevelOk && speedController<30 && isTakingOff && isGround)
+        if ( GameManager.Instance.totalEnemies==0 && isZLevelOk && speedController<30 && isTakingOff && isGround )
             {
                 isLanding=true;
             }
         else
             {
-                isLanding=false;    
+                isLanding=false;
+                timeLanding=0;    
             }
 
     }
@@ -149,9 +158,21 @@ public class PlayerControllerRigidbody : MonoBehaviour
     private void Landing()
     {   
         playerRb.useGravity=true;
-        playerRb.AddRelativeForce(landingSpeed * Time.fixedDeltaTime * Vector3.forward, ForceMode.VelocityChange);    
         playerRb.AddRelativeTorque(horizontal*Time.fixedDeltaTime*rotationGroundForce*Vector3.up,ForceMode.Force);
-           
+        timeLanding+=Time.deltaTime;
+        switch (timeLanding)
+            {
+                case < 5f:
+                    landingSpeed=20f;
+                    break;
+              
+                case > 5:
+                    landingSpeed=0f;
+                    break;
+                
+            }
+        playerRb.AddRelativeForce(landingSpeed * Time.fixedDeltaTime * Vector3.forward, ForceMode.VelocityChange);    
+        landed = speedController == 0;
     }
     
     void FixedUpdate()
@@ -166,6 +187,7 @@ public class PlayerControllerRigidbody : MonoBehaviour
         }
 
     }
+
 
 }
 
